@@ -3,25 +3,30 @@ import ProjectCard from "../Layout/ProjectCard";
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    marginTop: theme.spacing(1)
+    marginTop: theme.spacing(1),
   },
   root: {
     flexGrow: 1,
-    alignItems: "center"
+    alignItems: "center",
   },
   paper: {
     padding: theme.spacing(1),
     textAlign: "center",
     color: theme.palette.text.secondary,
-    flexGrow: 1
+    flexGrow: 1,
   },
 }));
 
-export default function Projects({ projects }) {
+export default function Projects({ projects, searchWord }) {
   const classes = useStyles();
-  const projectsCards = projects.map((project) => (
+  const searchRegex = new RegExp(searchWord, "gi");
+  const searchedProjects = projects.filter(
+    (project) =>
+      searchRegex.test(project.name) || searchRegex.test(project.notes)
+  );
+  const projectsCards = searchedProjects.map((project) => (
     <Grid item xs={4} key={project.idd}>
-      <ProjectCard project={project}/>
+      <ProjectCard project={project} />
     </Grid>
   ));
   return (

@@ -1,15 +1,15 @@
 import { Box, CircularProgress } from "@material-ui/core";
 
-export default function CircularProgressCenter(props) {
+export default function CircularProgressCenter({color = "primary", height}) {
   return (
     <Box
       display="flex"
       width="100%"
-      height="300px"
+      height={height ?? "auto"}
       alignItems="center"
       justifyContent="center"
     >
-      <CircularProgress {...props} />
+      <CircularProgress color={color} />
     </Box>
   );
 }

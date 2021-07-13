@@ -7,6 +7,7 @@ import CircularProgressCenter from "./UI/CircularProgressCenter";
 
 export default function App() {
   const [projects, setProjects] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -15,22 +16,26 @@ export default function App() {
       const response = await fetch("/api/v1/project/", {
         credentials: "include",
         headers: {
-          "Authorization": `Bearer ${Auth.bearerToken}`
-        }
+          Authorization: `Bearer ${Auth.bearerToken}`,
+        },
       });
       const data = await response.json();
       setProjects(data.objects);
       setLoading(false);
-      console.log(data);
-    }
+      //console.log(data);
+    };
     fetchProjects();
   }, []);
 
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
   return (
     <>
-      <SearchAppBar />
-      {!loading && <Projects projects={projects} />}
-      {loading && <CircularProgressCenter color="secondary"/>}
+      <SearchAppBar onSearchChange={handleSearchChange} />
+      {!loading && <Projects projects={projects} searchWord={searchQuery} />}
+      {loading && <CircularProgressCenter color="secondary" height="300px" />}
     </>
   );
 }

@@ -1,10 +1,10 @@
-## Prueba de la API de Priority Matrix
+## Priority Matrix API - test
 
-Antes de ejecutar el proyecto se necesita crear un archivo `src/Auth.js` con el siguiente formato:
+Before starting the create-react-app server with `npm start`, you have to create a `src/Auth.js` file with the following content:
 
 ```js
 const Auth = {
-  bearerToken: "Insertar token obtenido de https://prioritymatrix.com/o/authorized_tokens/",
+  bearerToken: "Insert token obtained from https://prioritymatrix.com/o/authorized_tokens/",
 };
 export default Auth;
 ```
