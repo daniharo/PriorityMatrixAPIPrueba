@@ -1,0 +1,4 @@
+node_modules
+Auth.js
+.eslintcache
+package-lock.json
